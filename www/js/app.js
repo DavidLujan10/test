@@ -25,6 +25,8 @@ console.log("Hola " + LlamarNom(vNombre)); //AQUI HACEMOS LLAMAR A LA FUNCION
 
 var vNombre = David; //AQUI CREAMOS LA VARIABLE GLOBAL
 
+/*var vNombre = "David"; //AQUI CREAMOS LA VARIABLE GLOBAL*/
+
 function LlamarNom(MiNombre){ //AQUI CREAMOS LA FUNCION EN JS
     return vNombre;
 }
