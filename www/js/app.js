@@ -17,4 +17,14 @@ console.log("El area de mi triangulo es igual:" + areaTria);
 var radioEsf = 7;
 radio3 = radioEsf * radioEsf * radioEsf;
 var volumenEsf = ((3/4) * Pi) * radio3;
-console.log("El volumen de mi esfera es igual: " + volumenEsf)
+console.log("El volumen de mi esfera es igual: " + volumenEsf);
+
+//TAREA SOBRE UNA FUNCION Y LA VARIABLE GLOBAL
+
+console.log("Hola " + LlamarNom(vNombre)); //AQUI HACEMOS LLAMAR A LA FUNCION
+
+var vNombre = David; //AQUI CREAMOS LA VARIABLE GLOBAL
+
+function LlamarNom(MiNombre){ //AQUI CREAMOS LA FUNCION EN JS
+    return vNombre;
+}
