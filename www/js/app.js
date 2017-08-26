@@ -1,3 +1,4 @@
+//TAREA SOBRE AREAS DE UN TRIANGULO, CIRCULO Y EL VOLUMEN DE UNA ESFERA
 var altura = 7;
 var base = 5;
 var areaRec = base * altura;
