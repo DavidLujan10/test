@@ -15,4 +15,3 @@ function saludar10(){
     }
     console.log(`El valor de i es ${i}`)
 }
-
