@@ -12,7 +12,7 @@ const ambosSiguenVivos = () => vidaGoku > 0 && vidaSuperman > 0; //AQUI REGRESA 
 
 const ambosMuertos = () => vidaGoku === 0 && vidaSuperman === 0 ; //
 
-//AQUI CALCULA CON 
+//AQUI CALCULA CON CUANTA FUERZA ATACA AL OPONENTE
 const calcularGolpe = () => Math.round(Math.random() * (MAX_POWER - MIN_POWER) + MIN_POWER);
 
 while(ambosSiguenVivos()){//SE PARA EL CICLO HASTA QUE UNO DE LOS 2 SIGA VIVO
