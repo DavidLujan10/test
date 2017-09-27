@@ -13,8 +13,8 @@ stage.addChild(rectPath);
 
 rectPath.animate('2s', {
     rotation: Math.PI*2,
-    //x: 800,
-    /*fillColor: 'blue',
+    /*x: 800,
+    fillColor: 'blue',
     fillColor: 'pink',
     fillColor: 'black'*/
 },{
@@ -61,7 +61,7 @@ rectPath.animate('2s', {
     /*fillColor: 'blue',
     fillColor: 'green',
     fillColor: 'blue',
-    fillColor: 'pink',*/
+    fillColor: 'pink'*/
  
 
 },{
