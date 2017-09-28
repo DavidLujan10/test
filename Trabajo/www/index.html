@@ -61,6 +61,21 @@
     var paddleX = (canvas.width - paddleWidth) / 2;//QUITANDO EL ESPACIO DEL CANVAS DEL ANCHO
     var rightPressed = false;
     var leftPressed = false;
+    var brickRowCount = 3; //CUENTA EL NUMERO DE FILAS
+    var brickColumnCount = 5; //CUENTA EL NUMERO DE COLUMNAS
+    var brickWidth = 75; //ANCHO DE LOS BRICKS
+    var brickHeight = 20; //ALTO  DE LOS BRICKS
+    var brickPadding = 10;
+    var brickOffsetTop = 30; //NO ESTEN PEGADOS AL BORDE
+    var brickOffsetLeft = 30;
+
+    var bricks = [];
+    for(c = 0; c < brickColumnCount; c++){ //RECORRE EL ARREGLO EN LAS FILAS Y LAS COLUMNAS PARA REGRESAR LA MATRIZ COMPLETA CON LA CANTIDAD DE BRICKS
+        bricks[c] = [];
+        for(r = 0; r < brickRowCount; r++){//SE VUELVE A ITERAR
+            bricks[c][r] = {x:0, y:0}; //SE CONVIERTE EN UNA MATRIZ DE 2X2
+        } 
+    }
 
     document.addEventListener('keydown', keyDownHandler, false);//EL KEYDH VA A INDICAR LA FLECHA QUE QUEREMOS QUE SE MUEVA Y CON EL FALSE QUE SE REFRESQUE OSEA NO SE QUEDE PRESIONADA
     document.addEventListener('keyup', keyUpHandler, false);
@@ -83,7 +98,7 @@
         }
     }
 
-    function drawBall(){//DIBUJA LA PELOTA
+    function drawBall(){ //DIBUJA LA PELOTA
         ctx.beginPath();
         ctx.arc(x, y , ballRadius, 0, Math.PI*2,);
         ctx.fillStyle = "#FF0000";
@@ -91,12 +106,27 @@
         ctx.closePath();
     }
 
-    function drawPaddle(){//DIBUJA EL PADDLE
+    function drawPaddle(){ //DIBUJA EL PADDLE
         ctx.beginPath();
         ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
         ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
+    }
+
+    function drawBricks(){ //DIBUJA LOS BRICKS
+        for(c = 0; c < brickColumnCount; c++){ //PARA LAS COLUMNAS
+            for(r = 0; r < brickRowCount; r++) //SE VUELVE A ITERAR PARA LAS FILAS
+                var brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft; //SUMA EL ANCHO Y DA UN ESPACIO ENTRE BRICK PARA QUE SE MUESTRE DE IZQ. A DERECHA
+                var brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop; //SUMA EL ALTO Y DA UN ESPACIO ENTRE BRICK PARA QUE SE MUESTRE DE ARRIBA HACIA ABAJO
+                bricks[c][r].x = 0; //MATRIZ DE 2X2 QUE SE CONVIERTE EN UN OBJETO Y LA X INDICA QUE ESTAMOS HACIENDO UN OBJETO
+                bricks[c][r].y = 0;
+                ctx.beginPath();
+                ctx.rect(0, 0, brickWidth, brickHeight);
+                ctx.fillStyle = "#9300FF";
+                ctx.fill();
+                ctx.closePath();
+        }
     }
 
     function draw(){
