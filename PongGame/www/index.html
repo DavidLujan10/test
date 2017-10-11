@@ -119,20 +119,40 @@
             for(r = 0; r < brickRowCount; r++) //SE VUELVE A ITERAR PARA LAS FILAS
                 var brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft; //SUMA EL ANCHO Y DA UN ESPACIO ENTRE BRICK PARA QUE SE MUESTRE DE IZQ. A DERECHA
                 var brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop; //SUMA EL ALTO Y DA UN ESPACIO ENTRE BRICK PARA QUE SE MUESTRE DE ARRIBA HACIA ABAJO
-                bricks[c][r].x = 0; //MATRIZ DE 2X2 QUE SE CONVIERTE EN UN OBJETO Y LA X INDICA QUE ESTAMOS HACIENDO UN OBJETO
-                bricks[c][r].y = 0;
+                bricks[c][r].x = brickX; //MATRIZ DE 2X2 QUE SE CONVIERTE EN UN OBJETO Y LA X INDICA QUE ESTAMOS HACIENDO UN OBJETO
+                bricks[c][r].y = brickY;
                 ctx.beginPath();
-                ctx.rect(0, 0, brickWidth, brickHeight);
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
                 ctx.fillStyle = "#9300FF";
                 ctx.fill();
                 ctx.closePath();
         }
     }
+    
+
+
+
+
+
+    function collisionDetection() {
+    for(c=0; c<brickColumnCount; c++) {
+        for(r=0; r<brickRowCount; r++) {
+            var b = bricks[c][r];
+            if(b.status == 1) {
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                }
+            }
+        }
+    }
+}
 
     function draw(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBall();
         drawPaddle();
+        drawBricks();
         
         //COMPARA PRIMERO 
         if(y +dy < ballRadius){
