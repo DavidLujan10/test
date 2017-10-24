@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+  <div onclick="destruye(this)" ID="test4" STYLE="position: absolute; top: 120; left: 300; font: 14 Arial; cursor: crosshair">Pulsame para destrozarme!!</div>
+  <script>
+      var vectores = new Array()
+      function destruye(oDiv){
+      aText = oDiv.innerText.split('')
+      for (i=0; i<aText.length; i++){if (aText[i] == " "){aText[i]=" "}}
+       var spans = ""
+      for (i=0; i<aText.length; i++){
+      spans += "<SPAN ID='"+oDiv.id+"Span1' NAME='"+oDiv.id+"Span1' STYLE="visibility: hidden; position: relative; font:"+(oDiv.style.font)+"">"+aText[i]+"</SPAN>"
+      }
+      oDiv.innerHTML = spans
+      oDiv.onclick = ""
+      spans = ""
+                  var oSpans = document.getElementsByName(oDiv.id+"Span1")
+                  vectores = new Array()
+                  for (i=0; i<oSpans.length; i++){
+                    var datas = new Array()
+                    var ileft = oSpans[i].offsetLeft
+                    var itop = oSpans[i].offsetTop
+                    datas[0] = -((oDiv.offsetWidth/2)-oSpans[i].offsetLeft)/oSpans.length*3
+                    datas[1] = -(22-Math.abs(((oDiv.offsetWidth/2)-oSpans[i].offsetLeft)/oSpans.length))  
+                    spans += "<SPAN ID='"+oDiv.id+"Span2_"+i+"' NAME='"+oDiv.id+"Span2_"+i+"' STYLE='position: absolute; top: "+oSpans[i].offsetTop+"; left: "+oSpans[i].offsetLeft+";'>"+aText[i]+"</SPAN>"
+                    vectores[i] = datas
+                  }
+                  oDiv.innerHTML = spans
+                  for (i=0; i<aText.length; i++){eclate(oDiv.id, i)}
+                }
+                 
+                function eclate(divid, index){
+                  var oSpan2 = document.getElementById(divid+"Span2_"+index)
+                  var oDiv = document.getElementById(divid)
+                  if (oSpan2.offsetTop-oDiv.offsetTop>document.body.offsetHeight)
+                  {
+                    oDiv.removeChild(oSpan2)
+                    return(1)
+                  }
+                  oSpan2.style.left = oSpan2.offsetLeft + vectores[index][0]
+                  oSpan2.style.top = oSpan2.offsetTop + vectores[index][1]
+                  vectores[index][0] = vectores[index][0]/1.01
+                  vectores[index][1] = vectores[index][1]+2
+                  setTimeout("eclate('"+divid+"',"+index+")",50)
+                }
+                   
+  </script>
+
+</body>
+
+</html>
